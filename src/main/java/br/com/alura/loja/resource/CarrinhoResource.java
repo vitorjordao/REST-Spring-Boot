@@ -2,6 +2,7 @@ package br.com.alura.loja.resource;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,11 +17,13 @@ import br.com.alura.loja.dao.CarrinhoDAO;
 @Controller
 @RequestMapping("/carrinhos")
 public class CarrinhoResource {
+	@Autowired
+	CarrinhoDAO carrinho;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public HttpEntity<byte[]> getXml(@PathVariable("id") final Integer id, final ModelMap map,
 			final HttpServletResponse response) {
-		final String xml = new CarrinhoDAO().busca(id).toXML();
+		final String xml = this.carrinho.busca(id).toXML();
 
 		final byte[] documentBody = xml.getBytes();
 

@@ -1,31 +1,27 @@
 package br.com.alura.loja.dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.alura.loja.modelo.Projeto;
+import br.com.alura.loja.repository.ProjetoRepository;
 
 public class ProjetoDAO {
-	@PersistenceContext
-	private EntityManager manager;
+	@Autowired
+	private ProjetoRepository repository;
 
 	public void adiciona(final Projeto projeto) {
-		this.manager.persist(projeto);
+		this.repository.save(projeto);
 	}
 
-	public Projeto busca(final Long id) {
-		return this.manager.createQuery("select distinct(p) from Projeto p where p.id = :id", Projeto.class)
-				.setParameter("id", id).getSingleResult();
+	public Projeto busca(final long id) {
+		return this.repository.findById(id).get();
 	}
 
 	public void remove(final long id) {
-		final Projeto projeto = this.manager
-				.createQuery("select distinct(p) from Projeto p where p.id = :id", Projeto.class).setParameter("id", id)
-				.getSingleResult();
-		this.manager.remove(projeto);
+		this.repository.deleteById(id);
 	}
 
 	public void remove(final Projeto projeto) {
-		this.manager.remove(projeto);
+		this.repository.delete(projeto);
 	}
 }
