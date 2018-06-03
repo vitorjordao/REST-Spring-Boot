@@ -1,10 +1,15 @@
 package br.com.alura.loja.dao;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import br.com.alura.loja.modelo.Projeto;
 import br.com.alura.loja.repository.ProjetoRepository;
 
+@Repository
+@Transactional
 public class ProjetoDAO {
 	@Autowired
 	private ProjetoRepository repository;
