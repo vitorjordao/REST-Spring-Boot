@@ -11,8 +11,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thoughtworks.xstream.XStream;
@@ -21,7 +22,8 @@ import br.com.alura.loja.dao.ProdutoDAO;
 import br.com.alura.loja.modelo.Carrinho;
 import br.com.alura.loja.modelo.Produto;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
 @ContextConfiguration
 @Transactional
 public class ClienteTest {
@@ -41,7 +43,7 @@ public class ClienteTest {
 		Assert.assertEquals("Rua Vergueiro 3185, 8 andar", carrinho.getRua());
 	}
 
-	@Test(timeout = 100000l)
+	@Test
 	public void testaQueSuportaNovosCarrinhos() {
 		this.client = ClientBuilder.newClient();
 		this.target = this.client.target("http://localhost:8080");
@@ -57,6 +59,8 @@ public class ClienteTest {
 		carrinho.setRua("Rua Vergueiro");
 		carrinho.setCidade("Sao Paulo");
 		final String xml = carrinho.toXML();
+
+		System.out.println(xml);
 
 		final Entity<String> entity = Entity.entity(xml, MediaType.APPLICATION_XML);
 

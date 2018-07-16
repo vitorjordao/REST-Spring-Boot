@@ -18,7 +18,7 @@ public class ProjetoDAO {
 		this.repository.save(projeto);
 	}
 
-	public Projeto busca(final long id) {
+	public Projeto busca(final Long id) {
 		return this.repository.findById(id).get();
 	}
 

@@ -23,6 +23,13 @@ public class ProjetoTest {
 
 	}
 
+	private void deletarEntidades() {
+		final ProdutoDAO produtoDAO = new ProdutoDAO();
+		produtoDAO.remove(314);
+		final CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+		carrinhoDAO.remove(15);
+	}
+
 	@Before
 	public void inicia() {
 		LojaApplication.inicia();
@@ -32,13 +39,6 @@ public class ProjetoTest {
 	@After
 	public void termina() {
 		LojaApplication.termina();
-	}
-
-	private void deletarEntidades() {
-		final ProdutoDAO produtoDAO = new ProdutoDAO();
-		produtoDAO.remove(314);
-		final CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
-		carrinhoDAO.remove(15);
 	}
 
 }

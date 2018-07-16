@@ -12,11 +12,11 @@ public class Projeto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String nome;
 	private int anoDeInicio;
 
-	public Projeto(final long id, final String nome, final int anoDeInicio) {
+	public Projeto(final Long id, final String nome, final int anoDeInicio) {
 		this.id = id;
 		this.nome = nome;
 		this.anoDeInicio = anoDeInicio;
@@ -29,7 +29,7 @@ public class Projeto {
 	public Projeto() {
 	}
 
-	public long getId() {
+	public Long getId() {
 		return this.id;
 	}
 
@@ -41,7 +41,7 @@ public class Projeto {
 		return this.anoDeInicio;
 	}
 
-	public void setId(final long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 

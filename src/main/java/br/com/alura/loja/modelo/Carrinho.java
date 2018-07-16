@@ -23,6 +23,12 @@ public class Carrinho {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	public Carrinho(final String rua, final String cidade, final long id) {
+		this.rua = rua;
+		this.cidade = cidade;
+		this.id = id;
+	}
+
 	public Carrinho() {
 	}
 
@@ -31,14 +37,14 @@ public class Carrinho {
 		return this;
 	}
 
-	public Carrinho para(final String rua, final String cidade) {
-		this.rua = rua;
-		this.cidade = cidade;
+	public Carrinho setId(final long id) {
+		this.id = id;
 		return this;
 	}
 
-	public Carrinho setId(final long id) {
-		this.id = id;
+	public Carrinho para(final String rua, final String cidade) {
+		this.rua = rua;
+		this.cidade = cidade;
 		return this;
 	}
 
